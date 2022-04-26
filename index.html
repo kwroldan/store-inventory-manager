@@ -13,14 +13,58 @@
             <h1>Gilded Rose Inventory Manager</h1>
             <img src="images/GoldenRoseHeaderImage.png" alt="Gilded Rose" />
         </header>
+        <main>
+            <form>
+                <label for="item-name">Enter the item name:</label>
+                <input type="text" name="item-name" id="item-name">
+                <label for="item-quality">Enter the item quality:</label>
+                <input type="number" name="item-quality" id="item-quality">
+                <label for="item-sell-in">Enter the sell-in value:</label>
+                <input type="number" name="item-sell-in" id="item-sell-in">
+            </form>
+            <div class="inventory-display-container">
+                <section>
+                    <h2>Inventory</h2>
+                    <div class="inventory-display"></div>
+                        <table>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Sell In</th>
+                                <th>Quality</th>
+                            </tr>
+                            <tr>
+                                <td class="item-category">+5 Dexterity Vest</td>
+                                <td>10</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-category">Aged Brie</td>
+                                <td>2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="item-category">Elixir of the Mongoose</td>
+                                <td>5</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td class="item-category">Sulfuras, Hand of Ragnaros</td>
+                                <td>0</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td class="item-category">Backstage passes to a TAFKLA80ETC concert</td>
+                                <td>15</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td class="item-category">Conjured Mana Cake</td>
+                                <td>3</td>
+                                <td>6</td>
+                            </tr>
+                        </table>
+                </section>
+            </div>
+        </main>
     </body>
-
-
-
-
-
-
-
-
-
 </html>

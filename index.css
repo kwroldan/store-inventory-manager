@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
 
 body {
     background: hsl(0, 0%, 97%);
+    font-family: 'New Rocker', cursive;
 }
 
 header {
@@ -9,16 +11,84 @@ header {
     justify-content: space-around;
     align-items: center;
     border: ridge 5px hsl(42, 79%, 67%);
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'UnifrakturCook', cursive;
 }
 
-header > h1 {
+h1 {
     font-weight: bolder;
-    font-size: 32px;
-    font-family: 'UnifrakturCook', cursive;
+    font-size: 55px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 header > img {
     width: 150px;
+}
+
+.inventory-display-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+form {
+    display: grid;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+}
+
+input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    border: ridge 2px hsl(42, 79%, 67%);
+    height: 30px;
+}
+
+input:focus {
+    background-color: hsl(42, 79%, 77%);
+    border: ridge 5px hsl(42, 79%, 67%);
+    outline: none;
+}
+
+table, th, td {
+    border: ridge 2px hsl(42, 79%, 67%);
+    vertical-align: middle;
+}
+
+table {
+    width: 75%;
+    height: 100px;
+    text-align: center;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    font-size: 30px;
+}
+
+.item-category {
+    text-align: left;
+    padding-left: 10px;
+}
+
+td {
+    font-size: 25px;
 }
