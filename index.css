@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+body {
+    background: hsl(0, 0%, 97%);
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: ridge 5px hsl(42, 79%, 67%);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+header > h1 {
+    font-weight: bolder;
+    font-size: 32px;
+    font-family: 'UnifrakturCook', cursive;
+}
+
+header > img {
+    width: 150px;
+}
