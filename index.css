@@ -114,7 +114,7 @@ tr {
     margin-right: auto;
 }
 
-.item-category {
+.item-name {
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
@@ -122,4 +122,27 @@ tr {
 
 td {
     font-size: 25px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#next, #previous {
+    font-family: 'New Rocker', cursive;
+    font-size: 20px;
+    background-color: hsl(42, 79%, 67%);
+    border: groove 5px hsl(42, 79%, 77%);
+    border-radius: 10px;
+    padding: 25px;
+    transition: 0.5s;
+}
+
+#next:hover, #next:focus, #previous:hover, #previous:focus {
+    background-color: hsl(42, 79%, 77%);
+    border: groove 6px hsl(42, 79%, 57%);
+    font-weight: bold;
 }

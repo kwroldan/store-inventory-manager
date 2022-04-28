@@ -1,26 +1,58 @@
 const inventoryDisplayTable = document.querySelector("tbody");
 const submitButton = document.querySelector("#submit");
 const newItemForm = document.querySelector("form");
+const nextButton = document.querySelector("#next");
+const previousButton = document.querySelector("#previous");
 
+let itemInformation = {};
+let itemDisplayArray = [];
 newItemForm.addEventListener("submit", (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
     
-    const itemInformation = {
+    itemInformation = {
         itemName: formData.get("item-name"),
-        itemSellIn: formData.get("item-sell-in"),
-        itemQuality: formData.get("item-quality")
+        itemSellIn: +formData.get("item-sell-in"),
+        itemQuality: +formData.get("item-quality"),
+        itemCategory: getCategory(formData.get("item-name"))
     }
+    itemDisplayArray.push(itemInformation);
 
     const newInventoryItem = document.createElement("tr");
     newInventoryItem.innerHTML = `
-        <td class="item-category">${itemInformation.itemName}</td>
-        <td>${itemInformation.itemSellIn}</td>
+        <td class="item-name">${itemInformation.itemName}</td>
+        <td class="item-sell-in">${itemInformation.itemSellIn}</td>
         <td>${itemInformation.itemQuality}</td>
     `
+    newInventoryItem.classList.add("custom-inventory-item");
     inventoryDisplayTable.append(newInventoryItem);
 })
 
-function checkItemQuality(itemObject){
-    
+nextButton.addEventListener("click", () => {
+    subtractValues(); 
+})
+
+function getCategory(itemName) {
+    if (itemName.includes("Aged Brie")) {
+        return "aged"
+    } else if (itemName.includes("Backstage")) {
+        return "backstage"
+    } else if (itemName.includes("Sulfuras")) {
+        return "sulfuras"
+    } else if (itemName.includes("Conjured")) {
+        return "conjured"
+    }
+}
+
+function subtractValues() {
+    itemDisplayArray.forEach(object => {
+        const newInventoryItem = document.querySelector(".custom-inventory-item");
+        newInventoryItem.innerHTML = `
+        <td class="item-name">${object.itemName}</td>
+        <td class="item-sell-in">${(object.itemSellIn - 1)}</td>
+        <td>${object.itemQuality}</td>
+        `
+        object.itemSellIn--;
+        inventoryDisplayTable.append(newInventoryItem);
+    })
 }
