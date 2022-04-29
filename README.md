@@ -1,4 +1,11 @@
-# Store Inventory Manager
+
+
+# Gilded Rose Store Inventory Manager
+
+![Website Preview](images/GildedRose_README_Image.png)
+
+## Check it out at this link:
+[Gilded Rose Store Inventory Manager](https://kwroldan.github.io/store-inventory-manager/)
 
 Welcome to team Gilded Rose. You are asked to help build our store inventory management system. All items have a `sell_in` value which denotes the number of days we have left to sell the item and a `quality` value which denotes how valuable the item is. At the end of each day our software should lower both values for every item by 1.
 
