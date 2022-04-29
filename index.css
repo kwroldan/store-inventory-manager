@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
 
 body {
-    background: hsl(0, 0%, 97%);
+    background: hsl(0, 0%, 10%);
     font-family: 'New Rocker', cursive;
+    color: hsl(42, 79%, 67%);
 }
 
 header {
@@ -53,8 +54,9 @@ input {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    border: ridge 2px hsl(42, 79%, 67%);
+    border: ridge 4px hsl(42, 79%, 57%);
     height: 30px;
+    background-color: hsl(42, 79%, 37%);
 }
 
 input:focus {

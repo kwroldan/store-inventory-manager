@@ -59,6 +59,64 @@ nextButton.addEventListener("click", () => {
     subtractValues(); 
 })
 
+function nextDayQuality () {
+    itemDisplayArray.forEach(object => {
+        if (object.itemCategory == "aged") {
+            let calculatedQuality = object.itemQuality + 1
+            object.itemQuality++
+            object.itemQuality = checkQualityNumber(calculatedQuality)
+        } else if (object.itemCategory == "backstage") {
+            if (object.itemSellIn > 10) {
+                let calculatedQuality = object.itemQuality + 1;
+                object.itemQuality++
+                return calculatedQuality
+            } else if (object.itemSellIn <= 10 && object.itemSellIn > 5) {
+                let calculatedQuality = object.itemQuality + 2;
+                object.itemQuality++
+                object.itemQuality++
+                return calculatedQuality
+            } else if (object.itemSellIn <= 5 && object.itemSellIn > 0) {
+                let calculatedQuality = object.itemQuality + 3;
+                object.itemQuality++
+                object.itemQuality++
+                object.itemQuality++
+                return calculatedQuality;
+            } else if (object.itemSellIn <= 0) {
+                return object.itemQuality = 0
+            }
+        } else if (object.itemCategory == "conjured") {
+            if (object.itemSellIn > 0) {
+                let calculatedQuality = object.itemQuality - 2
+                object.itemQuality--
+                object.itemQuality--
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+                return calculatedQuality
+            } else {
+                let calculatedQuality = object.itemQuality - 4
+                object.itemQuality--
+                object.itemQuality--
+                object.itemQuality--
+                object.itemQuality--
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+                return calculatedQuality
+            }
+        } else if (object.itemCategory == "sulfuras") {
+            return object.itemQuality;
+        } else /*(object.itemCategory == "none")*/ {
+            if (object.itemSellIn >= 0) {
+                let calculatedQuality = object.itemQuality - 1
+                object.itemQuality--
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+            } else {
+                let calculatedQuality = object.itemQuality - 2
+                object.itemQuality--
+                object.itemQuality--
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+            }
+        }
+    })
+}
+
 function subtractValues() {
     itemDisplayArray.forEach(object => {
         const newInventoryItem = document.querySelector(".custom-inventory-item");
@@ -72,36 +130,78 @@ function subtractValues() {
     })
 }
 
-function nextDayQuality () {
-    itemDisplayArray.forEach(object => {
-        if (object.itemCategory == "none") {
-            let calculatedQuality = object.itemQuality - 1
-            object.itemQuality--
-            return calculatedQuality
-        }
-        if (object.itemCategory == "aged") {
-            let calculatedQuality = object.itemQuality + 1
-            object.itemQuality++
-            return calculatedQuality
-        } 
-        if (object.itemCategory == "backstage") {
-            return "What the fuck"
-        }
-        if (object.itemCategory == "conjured") {
-            let calculatedQuality = object.itemQuality - 2
-            object.itemQuality--
-            object.itemQuality--
-            return calculatedQuality
-        }
-        if (object.itemCategory == "sulfuras") {
-            return object.itemQuality = 80;
-        }
-    })
+function checkQualityNumber(calculatedQualityNumber) {
+    if (calculatedQualityNumber > 50) {
+        return 50
+    } else if (calculatedQualityNumber < 0) {
+        return 0
+    } else {
+        return calculatedQualityNumber
+    }
 }
 
 previousButton.addEventListener("click", () => {
+    previousDayQuality();
     addValues();
 })
+
+function previousDayQuality() {
+    itemDisplayArray.forEach(object => {
+        if (object.itemCategory == "aged") {
+                let calculatedQuality = object.itemQuality - 1
+                object.itemQuality--
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+        } else if (object.itemCategory == "backstage") {
+            if (object.itemSellIn > 10) {
+                let calculatedQuality = object.itemQuality - 1;
+                object.itemQuality--
+                return calculatedQuality
+            } else if (object.itemSellIn <= 10 && object.itemSellIn > 5) {
+                let calculatedQuality = object.itemQuality - 2;
+                object.itemQuality--
+                object.itemQuality--
+                return calculatedQuality
+            } else if (object.itemSellIn <= 5 && object.itemSellIn > 0) {
+                let calculatedQuality = object.itemQuality - 3;
+                object.itemQuality--
+                object.itemQuality--
+                object.itemQuality--
+                return calculatedQuality;
+            } else if (object.itemSellIn <= 0) {
+                return object.itemQuality = 0
+            }
+        } else if (object.itemCategory == "conjured") {
+            if (object.itemSellIn >= 0) {
+                let calculatedQuality = object.itemQuality + 2
+                object.itemQuality++
+                object.itemQuality++
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+                return calculatedQuality
+            } else {
+                let calculatedQuality = object.itemQuality + 4
+                object.itemQuality++
+                object.itemQuality++
+                object.itemQuality++
+                object.itemQuality++
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+                return calculatedQuality
+            }
+        } else if (object.itemCategory == "sulfuras") {
+            return object.itemQuality;
+        } else {
+            if (object.itemSellIn >= 0) {
+                let calculatedQuality = object.itemQuality + 1
+                object.itemQuality++
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+            } else {
+                let calculatedQuality = object.itemQuality + 2
+                object.itemQuality++
+                object.itemQuality++
+                object.itemQuality = checkQualityNumber(calculatedQuality)
+            }
+        }
+    })
+}
 
 function addValues() {
     itemDisplayArray.forEach(object => {
