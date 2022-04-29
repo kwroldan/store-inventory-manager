@@ -57,6 +57,7 @@ input {
     border: ridge 4px hsl(42, 79%, 57%);
     height: 30px;
     background-color: hsl(42, 79%, 37%);
+    font-family: 'New Rocker', cursive;
 }
 
 input:focus {

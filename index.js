@@ -171,7 +171,7 @@ function previousDayQuality() {
                 return object.itemQuality = 0
             }
         } else if (object.itemCategory == "conjured") {
-            if (object.itemSellIn >= 0) {
+            if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality + 2
                 object.itemQuality++
                 object.itemQuality++
