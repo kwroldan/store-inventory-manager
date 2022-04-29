@@ -7,14 +7,14 @@ const itemNameInput = document.querySelector("#item-name");
 const itemQualityInput = document.querySelector("#item-quality");
 
 itemNameInput.addEventListener("input", event => {
-	if (itemNameInput.value.toLowerCase().includes("sulfuras")) {
-		itemQualityInput.value = 80;
-		itemQualityInput.max = 80;
-		itemQualityInput.min = 80;
-	} else {
-		itemQualityInput.max = 50;
-		itemQualityInput.min = 0;
-	}
+    if (itemNameInput.value.toLowerCase().includes("sulfuras")) {
+        itemQualityInput.value = 80;
+        itemQualityInput.max = 80;
+        itemQualityInput.min = 80;
+    } else {
+        itemQualityInput.max = 50;
+        itemQualityInput.min = 0;
+    }
 })
 
 let itemInformation = {};
@@ -22,7 +22,7 @@ let itemDisplayArray = [];
 newItemForm.addEventListener("submit", (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    
+
     itemInformation = {
         itemName: formData.get("item-name"),
         itemSellIn: +formData.get("item-sell-in"),
@@ -50,53 +50,37 @@ function getCategory(itemName) {
         return "sulfuras"
     } else if (itemName.includes("Conjured")) {
         return "conjured"
-    } else 
+    } else
         return "none"
 }
 
 nextButton.addEventListener("click", () => {
     nextDayQuality();
-    subtractValues(); 
+    subtractValues();
 })
 
-function nextDayQuality () {
+function nextDayQuality() {
     itemDisplayArray.forEach(object => {
         if (object.itemCategory == "aged") {
             let calculatedQuality = object.itemQuality + 1
-            object.itemQuality++
             object.itemQuality = checkQualityNumber(calculatedQuality)
         } else if (object.itemCategory == "backstage") {
             if (object.itemSellIn > 10) {
-                let calculatedQuality = object.itemQuality + 1;
-                object.itemQuality++
-                return calculatedQuality
+                object.itemQuality = object.itemQuality + 1;
             } else if (object.itemSellIn <= 10 && object.itemSellIn > 5) {
-                let calculatedQuality = object.itemQuality + 2;
-                object.itemQuality++
-                object.itemQuality++
-                return calculatedQuality
+                object.itemQuality = object.itemQuality + 2;
             } else if (object.itemSellIn <= 5 && object.itemSellIn > 0) {
-                let calculatedQuality = object.itemQuality + 3;
-                object.itemQuality++
-                object.itemQuality++
-                object.itemQuality++
-                return calculatedQuality;
+                object.itemQuality = object.itemQuality + 3;
             } else if (object.itemSellIn <= 0) {
                 return object.itemQuality = 0
             }
         } else if (object.itemCategory == "conjured") {
             if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality - 2
-                object.itemQuality--
-                object.itemQuality--
                 object.itemQuality = checkQualityNumber(calculatedQuality)
                 return calculatedQuality
             } else {
                 let calculatedQuality = object.itemQuality - 4
-                object.itemQuality--
-                object.itemQuality--
-                object.itemQuality--
-                object.itemQuality--
                 object.itemQuality = checkQualityNumber(calculatedQuality)
                 return calculatedQuality
             }
@@ -105,12 +89,9 @@ function nextDayQuality () {
         } else {
             if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality - 1
-                object.itemQuality--
                 object.itemQuality = checkQualityNumber(calculatedQuality)
             } else {
                 let calculatedQuality = object.itemQuality - 2
-                object.itemQuality--
-                object.itemQuality--
                 object.itemQuality = checkQualityNumber(calculatedQuality)
             }
         }
@@ -120,12 +101,16 @@ function nextDayQuality () {
 function subtractValues() {
     itemDisplayArray.forEach(object => {
         const newInventoryItem = document.querySelector(".custom-inventory-item");
+        if (object.itemCategory === "sulfuras") {
+            object.itemSellIn = object.itemSellIn
+        } else {
+            object.itemSellIn--;
+        }
         newInventoryItem.innerHTML = `
         <td class="item-name">${object.itemName}</td>
-        <td class="item-sell-in">${(object.itemSellIn - 1)}</td>
+        <td class="item-sell-in">${(object.itemSellIn)}</td>
         <td>${object.itemQuality}</td>
         `
-        object.itemSellIn--;
         inventoryDisplayTable.append(newInventoryItem);
     })
 }
@@ -148,24 +133,16 @@ previousButton.addEventListener("click", () => {
 function previousDayQuality() {
     itemDisplayArray.forEach(object => {
         if (object.itemCategory == "aged") {
-                let calculatedQuality = object.itemQuality - 1
-                object.itemQuality--
-                object.itemQuality = checkQualityNumber(calculatedQuality)
+            let calculatedQuality = object.itemQuality - 1
+            object.itemQuality--
+            object.itemQuality = checkQualityNumber(calculatedQuality)
         } else if (object.itemCategory == "backstage") {
             if (object.itemSellIn > 10) {
-                let calculatedQuality = object.itemQuality - 1;
-                object.itemQuality--
-                return calculatedQuality
+                object.itemQuality = object.itemQuality - 1;
             } else if (object.itemSellIn <= 10 && object.itemSellIn > 5) {
-                let calculatedQuality = object.itemQuality - 2;
-                object.itemQuality--
-                object.itemQuality--
-                return calculatedQuality
+                object.itemQuality = object.itemQuality - 2;
             } else if (object.itemSellIn <= 5 && object.itemSellIn > 0) {
-                let calculatedQuality = object.itemQuality - 3;
-                object.itemQuality--
-                object.itemQuality--
-                object.itemQuality--
+                object.itemQuality = object.itemQuality - 3;
                 return calculatedQuality;
             } else if (object.itemSellIn <= 0) {
                 return object.itemQuality = 0
@@ -173,16 +150,10 @@ function previousDayQuality() {
         } else if (object.itemCategory == "conjured") {
             if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality + 2
-                object.itemQuality++
-                object.itemQuality++
                 object.itemQuality = checkQualityNumber(calculatedQuality)
                 return calculatedQuality
             } else {
                 let calculatedQuality = object.itemQuality + 4
-                object.itemQuality++
-                object.itemQuality++
-                object.itemQuality++
-                object.itemQuality++
                 object.itemQuality = checkQualityNumber(calculatedQuality)
                 return calculatedQuality
             }
@@ -191,12 +162,9 @@ function previousDayQuality() {
         } else {
             if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality + 1
-                object.itemQuality++
                 object.itemQuality = checkQualityNumber(calculatedQuality)
             } else {
                 let calculatedQuality = object.itemQuality + 2
-                object.itemQuality++
-                object.itemQuality++
                 object.itemQuality = checkQualityNumber(calculatedQuality)
             }
         }
