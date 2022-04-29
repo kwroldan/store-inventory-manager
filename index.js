@@ -102,8 +102,8 @@ function nextDayQuality () {
             }
         } else if (object.itemCategory == "sulfuras") {
             return object.itemQuality;
-        } else /*(object.itemCategory == "none")*/ {
-            if (object.itemSellIn >= 0) {
+        } else {
+            if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality - 1
                 object.itemQuality--
                 object.itemQuality = checkQualityNumber(calculatedQuality)
@@ -189,7 +189,7 @@ function previousDayQuality() {
         } else if (object.itemCategory == "sulfuras") {
             return object.itemQuality;
         } else {
-            if (object.itemSellIn >= 0) {
+            if (object.itemSellIn > 0) {
                 let calculatedQuality = object.itemQuality + 1
                 object.itemQuality++
                 object.itemQuality = checkQualityNumber(calculatedQuality)
