@@ -5,13 +5,20 @@ const nextButton = document.querySelector("#next");
 const previousButton = document.querySelector("#previous");
 const itemNameInput = document.querySelector("#item-name");
 const itemQualityInput = document.querySelector("#item-quality");
+const itemSellInInput = document.querySelector("#item-sell-in");
+const itemSellInLabel = document.querySelector("label:nth-child(5)");
 
 itemNameInput.addEventListener("input", event => {
     if (itemNameInput.value.toLowerCase().includes("sulfuras")) {
         itemQualityInput.value = 80;
         itemQualityInput.max = 80;
         itemQualityInput.min = 80;
+        itemSellInInput.required = false;
+        itemSellInInput.classList.add("hidden");
+        itemSellInLabel.classList.add("hidden");
     } else {
+        itemSellInInput.classList.remove("hidden");
+        itemSellInLabel.classList.remove("hidden");
         itemQualityInput.max = 50;
         itemQualityInput.min = 0;
     }
@@ -174,12 +181,16 @@ function previousDayQuality() {
 function addValues() {
     itemDisplayArray.forEach(object => {
         const newInventoryItem = document.querySelector(".custom-inventory-item");
+        if (object.itemCategory === "sulfuras") {
+            object.itemSellIn = object.itemSellIn
+        } else {
+            object.itemSellIn++;
+        }
         newInventoryItem.innerHTML = `
         <td class="item-name">${object.itemName}</td>
-        <td class="item-sell-in">${(object.itemSellIn + 1)}</td>
+        <td class="item-sell-in">${(object.itemSellIn)}</td>
         <td>${object.itemQuality}</td>
         `
-        object.itemSellIn++;
         inventoryDisplayTable.append(newInventoryItem);
     })
 }

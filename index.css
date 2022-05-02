@@ -82,6 +82,10 @@ input:focus {
     font-weight: bold;
 }
 
+.hidden {
+    display: none;
+}
+
 .inventory-display-container {
     display: flex;
     justify-content: center;
